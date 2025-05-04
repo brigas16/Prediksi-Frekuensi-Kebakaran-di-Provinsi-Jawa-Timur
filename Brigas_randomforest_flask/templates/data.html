@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Kebakaran Hutan dan Lahan</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles1.css') }}"
+    />
+
+    <!-- bootstrap core css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/button.css') }}"
+    />
+    <!-- fonts style -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />
+    <!--owl slider stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <!-- nice select -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+      integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4="
+      crossorigin="anonymous"
+    />
+    <!-- font awesome style -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/font-awesome.min.css') }}"
+    />
+    <!-- Custom styles for this template -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!-- responsive style -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/responsive.css') }}"
+    />
+  </head>
+  <body>
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid header_top_container">
+          <a class="navbar-brand" href="index.html">
+            Forest<span>Fire</span>
+          </a>
+          <div class="contact_nav">
+            <a href="{{ url_for('index') }}">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span> Home </span>
+            </a>
+            <a href="{{ url_for('data') }}">
+              <i class="fa fa-database" aria-hidden="true"></i>
+              <span> Data Kebakaran </span>
+            </a>
+            <a href="{{ url_for('visual') }}">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+              <span> Prediksi Kebakaran </span>
+            </a>
+            <a href="{{ url_for('predict1') }}">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+              <span> Input Data </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand navbar_brand_mobile" href="index.html">
+              Forest<span>Fire</span>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="{{ url_for('data_ponorogo') }}"
+                    onclick="showSelectedData('Ponorogo')"
+                    ><button type="button" class="custom-btn btn-13">
+                      Ponorogo
+                    </button></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="{{ url_for('data_situbondo') }}"
+                    onclick="showSelectedData('Situbondo')"
+                    ><button type="button" class="custom-btn btn-13">
+                      Situbondo
+                    </button></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="{{ url_for('data_nganjuk') }}"
+                    onclick="showSelectedData('Nganjuk')"
+                    ><button type="button" class="custom-btn btn-13">
+                      Nganjuk
+                    </button></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="{{ url_for('data_bojonegoro') }}"
+                    onclick="showSelectedData('Bojonegoro')"
+                    ><button type="button" class="custom-btn btn-13">
+                      Bojonegoro
+                    </button></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="{{ url_for('data_kabmadiun') }}"
+                    onclick="showSelectedData('Kabupaten Madiun')"
+                    ><button type="button" class="custom-btn btn-13">
+                      Kabupaten Madiun
+                    </button></a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <script>
+              function showSelectedData(dataName) {
+                alert("Anda memilih data: " + dataName);
+              }
+            </script>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="sidebar"></div>
+    <div class="content">
+      <h1>Data Kebakaran Hutan dan Lahan</h1>
+      <div id="table-container">
+        <!-- Table will be inserted here -->
+        <table>
+          <thead>
+            <tr>
+              <th>Tahun</th>
+              <th>Bulan</th>
+              <th>Minimum Temperatur</th>
+              <th>Maksimum Temperatur</th>
+              <th>Kelembapan</th>
+              <th>Curah Hujan</th>
+              <th>Kecepatan Angin</th>
+              <th>Angka Kebakaran</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in data %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+              <td>{{ row[2] }}</td>
+              <td>{{ row[3] }}</td>
+              <td>{{ row[4] }}</td>
+              <td>{{ row[5] }}</td>
+              <td>{{ row[6] }}</td>
+              <td>{{ row[7] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

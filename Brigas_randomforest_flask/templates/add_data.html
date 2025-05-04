@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Data</title>
+</head>
+<body>
+    <h1>Add Data</h1>
+    <form action="{{ url_for('add_data', table_name=table_name) }}" method="post">
+        <input type="hidden" name="table_name" value="{{ table_name }}">
+        <!-- Tambah input fields untuk data yang ingin ditambahkan -->
+        <button type="submit">Add Data</button>
+    </form>
+</body>
+</html>

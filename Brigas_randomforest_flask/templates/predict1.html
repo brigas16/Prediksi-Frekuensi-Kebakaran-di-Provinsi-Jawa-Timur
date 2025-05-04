@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fire Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style3.css') }}"
+    />
+    <!-- bootstrap core css -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.css') }}"
+    />
+    <!-- fonts style -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />
+    <!-- owl slider stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <!-- nice select -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+      integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4="
+      crossorigin="anonymous"
+    />
+    <!-- font awesome style -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/font-awesome.min.css') }}"
+    />
+    <!-- Custom styles for this template -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!-- responsive style -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/responsive.css') }}"
+    />
+  </head>
+  <body>
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid header_top_container">
+          <a class="navbar-brand" href="index.html">
+            Forest<span>Fire</span>
+          </a>
+          <div class="contact_nav">
+            <a href="{{ url_for('index') }}">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span> Home </span>
+            </a>
+            <a href="{{ url_for('data') }}">
+              <i class="fa fa-database" aria-hidden="true"></i>
+              <span> Data Kebakaran </span>
+            </a>
+            <a href="{{ url_for('visual') }}">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+              <span> Prediksi Kebakaran </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand navbar_brand_mobile" href="index.html">
+              Forest<span>Fire</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <form id="contact" action="{{ url_for('predict') }}" method="post">
+        <h3>Predict Number of Fires for One Month</h3>
+        <h4>Fill out the form below to get a fire prediction.</h4>
+
+        <select name="city" id="city" required>
+          <option value="" disabled selected>Select a city</option>
+          {% for city in cities %}
+          <option value="{{ city }}">{{ city | capitalize }}</option>
+          {% endfor %}
+        </select>
+
+        <input
+          placeholder="Month"
+          type="number"
+          id="month"
+          name="month"
+          required
+          autofocus
+        />
+        <input
+          placeholder="Rainfall (mm)"
+          type="number"
+          step="any"
+          id="rainfall"
+          name="rainfall"
+          required
+        />
+        <input
+          placeholder="Wind Speed (m/s)"
+          type="number"
+          step="any"
+          id="wind_speed"
+          name="wind_speed"
+          required
+        />
+        <input
+          placeholder="Minimum Temperature (°C)"
+          type="number"
+          step="any"
+          id="min_temp"
+          name="min_temp"
+          required
+        />
+        <input
+          placeholder="Humidity (%)"
+          type="number"
+          step="any"
+          id="humidity"
+          name="humidity"
+          required
+        />
+        <input
+          placeholder="Maximum Temperature (°C)"
+          type="number"
+          step="any"
+          id="max_temp"
+          name="max_temp"
+          required
+        />
+
+        <div>
+          <button
+            name="submit"
+            type="submit"
+            id="contact-submit"
+            data-submit="...Sending"
+          >
+            Predict
+          </button>
+        </div>
+
+        {% if prediction is not none %}
+        <div class="result">
+          <h2>Fire Prediction Result</h2>
+          <p>
+            Predicted Number of Fires for Month {{ month }}: {{ prediction }}
+          </p>
+          <h2>Model Performance Metrics</h2>
+          <p>Mean Squared Error (MSE): {{ mse }}</p>
+          <p>R-squared (R²) Score: {{ r2 }}</p>
+        </div>
+        {% endif %}
+      </form>
+    </div>
+  </body>
+</html>

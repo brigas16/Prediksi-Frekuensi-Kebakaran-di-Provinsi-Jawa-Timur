@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style2.css') }}"
+    />
+  </head>
+  <body>
+    <div class="vid-container">
+      <video
+        class="bgvid"
+        autoplay="autoplay"
+        muted="muted"
+        preload="auto"
+        loop
+      >
+        <!-- Provide the path to your video directory and the video file -->
+        <source src="{{ url_for('static', filename='images/test1.mp4') }}" />
+        <!-- Add more source elements for other video formats if needed -->
+      </video>
+      <div class="inner-container">
+        <div class="box">
+          <h1>Login</h1>
+          <form method="POST" action="{{ url_for('login') }}">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <button type="submit">Login</button>
+          </form>
+          <p>Not a member? <span>Sign Up</span></p>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  </body>
+</html>
